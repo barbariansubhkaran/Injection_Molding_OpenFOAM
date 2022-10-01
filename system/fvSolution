@@ -1,0 +1,141 @@
+FoamFile
+{
+	version	2.0;
+	class	dictionary;
+	format	ascii;
+	location	"system";
+	object	fvSolution;
+}
+solvers
+{
+	p_rgh
+	{
+		solver	GAMG;
+		smoother	GaussSeidel;
+		relTol	1.0E-4;
+		cacheAgglomeration	true;
+		nFinestSweeps	2;
+		nPreSweeps	0;
+		maxIter	100;
+		nPostSweeps	1;
+		agglomerator	faceAreaPair;
+		nCellsInCoarsestLevel	10;
+		tolerance	1.0E-6;
+		mergeLevels	1;
+	}
+	p_rghFinal
+	{
+		solver	GAMG;
+		smoother	GaussSeidel;
+		relTol	1.0E-4;
+		cacheAgglomeration	true;
+		nFinestSweeps	2;
+		nPreSweeps	0;
+		maxIter	100;
+		nPostSweeps	1;
+		agglomerator	faceAreaPair;
+		nCellsInCoarsestLevel	10;
+		tolerance	1.0E-6;
+		mergeLevels	1;
+		minIter	1;
+	}
+	U
+	{
+		solver	PBiCGStab;
+		relTol	0.01;
+		preconditioner	DILU;
+		tolerance	1.0E-6;
+		maxIter	100;
+	}
+	UFinal
+	{
+		solver	PBiCGStab;
+		relTol	1.0E-4;
+		preconditioner	DILU;
+		tolerance	1.0E-6;
+		maxIter	100;
+		minIter	1;
+	}
+	pcorr
+	{
+		solver	GAMG;
+		smoother	GaussSeidel;
+		relTol	1.0E-4;
+		cacheAgglomeration	true;
+		nFinestSweeps	2;
+		nPreSweeps	0;
+		maxIter	100;
+		nPostSweeps	1;
+		agglomerator	faceAreaPair;
+		nCellsInCoarsestLevel	10;
+		tolerance	1.0E-6;
+		mergeLevels	1;
+	}
+	pcorrFinal
+	{
+		solver	GAMG;
+		smoother	GaussSeidel;
+		relTol	1.0E-4;
+		cacheAgglomeration	true;
+		nFinestSweeps	2;
+		nPreSweeps	0;
+		maxIter	100;
+		nPostSweeps	1;
+		agglomerator	faceAreaPair;
+		nCellsInCoarsestLevel	10;
+		tolerance	1.0E-6;
+		mergeLevels	1;
+		minIter	1;
+	}
+	"alpha.*"
+	{
+		nAlphaCorr	2;
+		nAlphaSubCycles	2;
+		cAlpha	1.0;
+		icAlpha	0.0;
+		MULESCorr	false;
+		nLimiterIter	3;
+		alphaApplyPrevCorr	false;
+		solver	smoothSolver;
+		smoother	GaussSeidel;
+		nSweeps	2;
+		relTol	0.1;
+		tolerance	1.0E-8;
+		maxIter	100;
+	}
+}
+PIMPLE
+{
+	nCorrectors	1;
+	nNonOrthogonalCorrectors	0;
+	momentumPredictor	false;
+	correctPhi	false;
+	moveMeshOuterCorrectors	false;
+	checkMeshCourantNo	false;
+	nOuterCorrectors	1;
+	residualControl
+	{
+		p_rgh
+		{
+			tolerance	1.0E-4;
+			relTol	0.0;
+		}
+		U
+		{
+			tolerance	1.0E-4;
+			relTol	0.0;
+		}
+		pcorr
+		{
+			tolerance	1.0E-4;
+			relTol	0.0;
+		}
+	}
+	pRefCell	0;
+	pRefValue	0.0;
+}
+relaxationFactors
+{
+	p_rgh	1.0;
+	U	1.0;
+}

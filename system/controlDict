@@ -1,0 +1,91 @@
+FoamFile
+{
+	class	dictionary;
+	format	ascii;
+	location	system;
+	object	controlDict;
+	version	2.0;
+}
+adjustTimeStep	true;
+application	interFoam;
+deltaT	1e-06;
+endTime	1.5;
+maxAlphaCo	0.5;
+maxCo	1;
+maxDeltaT	1e-03;
+purgeWrite	0;
+startFrom	latestTime;
+startTime	0;
+stopAt	endTime;
+timeFormat	general;
+timePrecision	6;
+writeControl	adjustableRunTime;
+writeInterval	1e-02;
+writePrecision	7;
+runTimeModifiable	true;
+compression	uncompressed;
+writeFormat	binary;
+libs	("libfvMotionSolvers.so" "libturbulenceModels.so" "libturbulenceModelSchemes.so");
+functions
+{
+	probes
+	{
+		libs	("libsampling.so");
+		type	probes;
+		names	(probe_1);
+		probeLocations	( (0.002 0.017 0.01) );
+		fields	(U alpha.HDPE);
+		enabled	true;
+		log	true;
+		writeFields	true;
+	}
+	slices
+	{
+		libs	("libsampling.so");
+		type	surfaces;
+		interpolationScheme	cellPoint;
+		surfaceFormat	foam;
+		surfaces	(
+	slice_1
+	{
+		interpolate	true;
+		planeType	pointAndNormal;
+		pointAndNormalDict
+		{
+			normal	(0 1 0);
+			point	(0.0 0.0 0.0);
+		}
+		triangulate	true;
+		type	plane;
+	}
+	slice_2
+	{
+		interpolate	true;
+		planeType	pointAndNormal;
+		pointAndNormalDict
+		{
+			normal	(0 1 0);
+			point	(0 1e-02 0);
+		}
+		triangulate	true;
+		type	plane;
+	}
+);
+		fields	(U alpha.HDPE);
+		enabled	true;
+		log	true;
+		writeControl	writeTime;
+		writeFields	true;
+	}
+	writeExtraFields
+	{
+		libs	("libutilityFunctionObjects.so");
+		objects	(p rho);
+		type	writeObjects;
+		writeOption	anyWrite;
+		enabled	true;
+		log	true;
+		writeControl	writeTime;
+	}
+}
+

@@ -1,0 +1,319 @@
+FoamFile
+{
+	version	2.0;
+	class	dictionary;
+	format	ascii;
+	location	"system";
+	object	snappyHexMeshDict;
+}
+castellatedMesh	true;
+snap	true;
+addLayers	false;
+geometry
+{
+	housing.stl
+	{
+		type	triSurfaceMesh;
+		simflowType	stl;
+		name	housing;
+		includedAngle	120.0;
+		faceGroups
+		{
+			patch05
+			{
+				name	housing;
+			}
+			patch06
+			{
+				name	housing;
+			}
+			patch07
+			{
+				name	housing;
+			}
+			patch08
+			{
+				name	housing;
+			}
+			patch09
+			{
+				name	housing;
+			}
+			patch010
+			{
+				name	housing;
+			}
+			patch011
+			{
+				name	housing;
+			}
+			patch012
+			{
+				name	housing;
+			}
+			patch013
+			{
+				name	housing;
+			}
+			patch014
+			{
+				name	housing;
+			}
+			patch015
+			{
+				name	housing;
+			}
+			patch016
+			{
+				name	housing;
+			}
+			patch017
+			{
+				name	housing;
+			}
+			patch018
+			{
+				name	housing;
+			}
+			patch019
+			{
+				name	housing;
+			}
+			patch020
+			{
+				name	housing;
+			}
+			patch021
+			{
+				name	housing;
+			}
+		}
+	}
+	housing_inlet.stl
+	{
+		type	triSurfaceMesh;
+		simflowType	stl;
+		name	housing_inlet;
+		includedAngle	120.0;
+	}
+	housing_outlet1.stl
+	{
+		type	triSurfaceMesh;
+		simflowType	stl;
+		name	housing_outlet1;
+		includedAngle	120.0;
+	}
+	housing_outlet1_tube_wall.stl
+	{
+		type	triSurfaceMesh;
+		simflowType	stl;
+		name	housing_outlet1_tube_wall;
+		includedAngle	120.0;
+	}
+	housing_outlet2.stl
+	{
+		type	triSurfaceMesh;
+		simflowType	stl;
+		name	housing_outlet2;
+		includedAngle	120.0;
+	}
+	housing_outlet2_tube_wall.stl
+	{
+		type	triSurfaceMesh;
+		simflowType	stl;
+		name	housing_outlet2_tube_wall;
+		includedAngle	120.0;
+	}
+	patch.stl
+	{
+		type	triSurfaceMesh;
+		simflowType	primitive;
+		primitiveType	box;
+		name	patch;
+		max	(0.022 0.015 0.026);
+		min	(0.012 0.005 0.006);
+		faceGroups
+		{
+			x_min
+			{
+				name	patch;
+			}
+			x_max
+			{
+				name	patch;
+			}
+			y_min
+			{
+				name	patch;
+			}
+			y_max
+			{
+				name	patch;
+			}
+			z_min
+			{
+				name	patch;
+			}
+			z_max
+			{
+				name	patch;
+			}
+		}
+	}
+}
+castellatedMeshControls
+{
+	locationInMesh	(0.019 0.01 0.01);
+	refinementSurfaces
+	{
+		housing
+		{
+			level	( 2 2 );
+			patchInfo
+			{
+				type	wall;
+			}
+		}
+		housing_inlet
+		{
+			level	( 2 2 );
+			patchInfo
+			{
+				type	wall;
+			}
+		}
+		housing_outlet1
+		{
+			level	( 2 2 );
+			patchInfo
+			{
+				type	wall;
+			}
+		}
+		housing_outlet1_tube_wall
+		{
+			level	( 3 3 );
+			patchInfo
+			{
+				type	wall;
+			}
+		}
+		housing_outlet2
+		{
+			level	( 2 2 );
+			patchInfo
+			{
+				type	wall;
+			}
+		}
+		housing_outlet2_tube_wall
+		{
+			level	( 3 3 );
+			patchInfo
+			{
+				type	wall;
+			}
+		}
+	}
+	refinementRegions
+	{
+	}
+	limitRegions
+	{
+	}
+	features	
+	(
+	{
+		file	"housing.eMesh";
+		levels	((0 0));
+	}
+	{
+		file	"housing_inlet.eMesh";
+		levels	((0 0));
+	}
+	{
+		file	"housing_outlet1.eMesh";
+		levels	((0 0));
+	}
+	{
+		file	"housing_outlet1_tube_wall.eMesh";
+		levels	((0 0));
+	}
+	{
+		file	"housing_outlet2.eMesh";
+		levels	((0 0));
+	}
+	{
+		file	"housing_outlet2_tube_wall.eMesh";
+		levels	((0 0));
+	}
+	);
+	maxLocalCells	1000000;
+	maxGlobalCells	10000000;
+	nCellsBetweenLevels	4;
+	maxLoadUnbalance	0.1;
+	minRefinementCells	10;
+	resolveFeatureAngle	30.0;
+	allowFreeStandingZoneFaces	true;
+}
+snapControls
+{
+	tolerance	1.0;
+	nSmoothPatch	3;
+	nSolveIter	500;
+	nRelaxIter	5;
+	nFeatureSnapIter	10;
+	implicitFeatureSnap	true;
+	explicitFeatureSnap	true;
+	multiRegionFeatureSnap	true;
+	nFaceSplitInterval	5;
+}
+addLayersControls
+{
+	layers
+	{
+	}
+	relativeSizes	true;
+	minThickness	0.1;
+	firstLayerThickness	0.2;
+	expansionRatio	1.25;
+	nGrow	0;
+	featureAngle	180.0;
+	maxFaceThicknessRatio	0.5;
+	nSmoothSurfaceNormals	5;
+	nSmoothThickness	10;
+	minMedialAxisAngle	90.0;
+	maxThicknessToMedialRatio	0.5;
+	nMedialAxisIter	100;
+	nSmoothNormals	3;
+	slipFeatureAngle	30.0;
+	nRelaxIter	5;
+	nBufferCellsNoExtrude	0;
+	nLayerIter	50;
+	nRelaxedIter	20;
+	detectExtrusionIsland	true;
+}
+meshQualityControls
+{
+	maxNonOrtho	65.0;
+	maxBoundarySkewness	20.0;
+	maxInternalSkewness	4.0;
+	maxConcave	80.0;
+	minVol	1.0E-14;
+	minTetQuality	1.0E-20;
+	minArea	-1.0;
+	minTwist	0.02;
+	minTriangleTwist	-1.0;
+	minDeterminant	0.01;
+	minFaceWeight	0.05;
+	minVolRatio	0.01;
+	minVolCollapseRatio	0.1;
+	nSmoothScale	4;
+	errorReduction	0.75;
+	relaxed
+	{
+		maxNonOrtho	75.0;
+	}
+}
+mergeTolerance	1.0E-6;
+debug	0;

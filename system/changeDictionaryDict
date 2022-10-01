@@ -1,0 +1,110 @@
+FoamFile
+{
+	version	2.0;
+	format	binary;
+	class	dictionary;
+	location	"system";
+	object	changeDictionaryDict;
+}
+p_rgh
+{
+	boundaryField
+	{
+		housing_inlet
+		{
+			type	uniformFixedValue;
+			uniformValue	table (
+	(0.0 1600000.0)
+	(0.5 3.0E7)
+	(1.0 5.0E7)
+	(1.5 3.0E7)
+);
+		}
+		housing_outlet1
+		{
+			type	totalPressure;
+			p0	uniform 100000.0;
+			rho	rho;
+			phi	rhoPhi;
+			gamma	0;
+		}
+		housing_outlet1_tube_wall
+		{
+			type	fixedFluxPressure;
+		}
+		housing_outlet2
+		{
+			type	totalPressure;
+			p0	uniform 100000.0;
+			rho	rho;
+			phi	rhoPhi;
+			gamma	0;
+		}
+		housing_outlet2_tube_wall
+		{
+			type	fixedFluxPressure;
+		}
+		housing
+		{
+			type	fixedFluxPressure;
+		}
+	}
+}
+U
+{
+	boundaryField
+	{
+		housing_inlet
+		{
+			type	pressureInletOutletVelocity;
+			value	uniform (0.0 0.0 0.0);
+			phi	rhoPhi;
+		}
+		housing_outlet1
+		{
+			type	zeroGradient;
+		}
+		housing_outlet1_tube_wall
+		{
+			type	noSlip;
+		}
+		housing_outlet2
+		{
+			type	zeroGradient;
+		}
+		housing_outlet2_tube_wall
+		{
+			type	noSlip;
+		}
+		housing
+		{
+			type	noSlip;
+		}
+	}
+}
+alpha.HDPE
+{
+	boundaryField
+	{
+		housing_outlet1
+		{
+			type	zeroGradient;
+		}
+		housing_outlet1_tube_wall
+		{
+			type	zeroGradient;
+		}
+		housing_outlet2
+		{
+			type	zeroGradient;
+		}
+		housing_outlet2_tube_wall
+		{
+			type	zeroGradient;
+		}
+		housing
+		{
+			type	zeroGradient;
+		}
+	}
+}

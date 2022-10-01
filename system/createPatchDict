@@ -1,0 +1,70 @@
+FoamFile
+{
+	version	2.0;
+	format	ascii;
+	class	dictionary;
+	location	"system";
+	object	createPatchDict;
+}
+pointSync	false;
+patches	(
+	{
+		name	housing;
+		patchInfo
+		{
+			type	wall;
+		}
+		constructFrom	patches;
+		patches	(housing_patch05 housing_patch06 housing_patch07 housing_patch08 housing_patch09 housing_patch010 housing_patch011 housing_patch012 housing_patch013 housing_patch014 housing_patch015 housing_patch016 housing_patch017 housing_patch018 housing_patch019 housing_patch020 housing_patch021);
+	}
+
+	{
+		name	housing_inlet;
+		patchInfo
+		{
+			type	wall;
+		}
+		constructFrom	patches;
+		patches	(housing_inlet_patch04);
+	}
+
+	{
+		name	housing_outlet1;
+		patchInfo
+		{
+			type	wall;
+		}
+		constructFrom	patches;
+		patches	(housing_outlet1_patch00);
+	}
+
+	{
+		name	housing_outlet1_tube_wall;
+		patchInfo
+		{
+			type	wall;
+		}
+		constructFrom	patches;
+		patches	(housing_outlet1_tube_wall_patch01);
+	}
+
+	{
+		name	housing_outlet2;
+		patchInfo
+		{
+			type	wall;
+		}
+		constructFrom	patches;
+		patches	(housing_outlet2_patch02);
+	}
+
+	{
+		name	housing_outlet2_tube_wall;
+		patchInfo
+		{
+			type	wall;
+		}
+		constructFrom	patches;
+		patches	(housing_outlet2_tube_wall_patch03);
+	}
+);

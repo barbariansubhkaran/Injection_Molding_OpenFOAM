@@ -1,0 +1,47 @@
+FoamFile
+{
+	version	2.0;
+	format	ascii;
+	class	polyBoundaryMesh;
+	location	"constant/polyMesh";
+	object	boundary;
+}
+6
+(
+	housing_inlet
+	{
+		type	patch;
+		startFace	340056;
+		nFaces	304;
+	}
+	housing_outlet1
+	{
+		type	patch;
+		startFace	340360;
+		nFaces	51;
+	}
+	housing_outlet1_tube_wall
+	{
+		type	wall;
+		startFace	340411;
+		nFaces	2352;
+	}
+	housing_outlet2
+	{
+		type	patch;
+		startFace	342763;
+		nFaces	51;
+	}
+	housing_outlet2_tube_wall
+	{
+		type	wall;
+		startFace	342814;
+		nFaces	2352;
+	}
+	housing
+	{
+		type	wall;
+		startFace	345166;
+		nFaces	43384;
+	}
+)

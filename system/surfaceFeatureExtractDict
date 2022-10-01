@@ -1,0 +1,44 @@
+FoamFile
+{
+	version	2.0;
+	format	ascii;
+	class	dictionary;
+	location	"system";
+	object	surfaceFeatureExtractDict;
+}
+housing_outlet1_tube_wall.stl
+{
+	extractionMethod	extractFromSurface;
+	includedAngle	120.0;
+	geometricTestOnly	false;
+}
+housing_outlet2.stl
+{
+	extractionMethod	extractFromSurface;
+	includedAngle	120.0;
+	geometricTestOnly	false;
+}
+housing.stl
+{
+	extractionMethod	extractFromSurface;
+	includedAngle	120.0;
+	geometricTestOnly	false;
+}
+housing_inlet.stl
+{
+	extractionMethod	extractFromSurface;
+	includedAngle	120.0;
+	geometricTestOnly	false;
+}
+housing_outlet2_tube_wall.stl
+{
+	extractionMethod	extractFromSurface;
+	includedAngle	120.0;
+	geometricTestOnly	false;
+}
+housing_outlet1.stl
+{
+	extractionMethod	extractFromSurface;
+	includedAngle	120.0;
+	geometricTestOnly	false;
+}
